@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
+    <title>Log In</title>
+</head>
+<body>
+    <header style="min-height:100vh;background-image:linear-gradient(rgba(12, 97, 138, 0.85), rgba(12, 97, 138, 0.85)),url('../user/css/imgs/signup-min2.jpg');background-size:100% 105%;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col col-xs-10 col-sm-9 col-md-7 col-lg-5 signup">
+                    <form action="hello.php" method="POST" id="login" class="form-group form1">
+                        <div class="form-group" style="margin-top:3%;margin-bottom:3%;">
+                            <p class="sign">Login</p>
+                        </div>
+                        <div class="wrong1">
+                                <p class="sign">Your passwords do not match</p>
+                        </div>
+                        <div class="md-form md-outline">
+                            <i class="fas fa-envelope prefix"></i>
+                            <input type="text" id="inputIconEx1" class="form-control">
+                            <label for="inputIconEx1">Username / E-mail</label>
+                            <!-- <small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone.</small> -->
+                        </div>
+                        <div class="md-form md-outline">
+                            <i class="fas fa-lock prefix"></i>
+                            <input type="text" id="inputIconEx1" class="form-control">
+                            <label for="inputIconEx1">Password</label>
+                            <!-- <small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone.</small> -->
+                        </div>
+                        <div class="row">
+                        <button class="btn btn-primary mt-3 mb-4 ml-auto mr-auto" style="width:60%"><i class="fas fa-lock mr-1"></i>Login Securely</button>
+                    </div>
+                        <div class="form-group text-center">
+                            <a href="../forgot_password" class="ml-auto mr-auto link1">Forgot password?</a>
+                        </div>
+                        <div class="form-group" style="font-size:20px;">
+                            <small class="mr-2">Don't have an account?</small>
+                            <small><a href="../user/features/signup.php">Sign Up</a></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/js/mdb.min.js"></script>
+    <style>
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    }
+    .wrong1{  
+        display: none;
+        background-color: rgb(250,235,235);
+        color: rgb(138,94,101); 
+        padding:16px;
+        margin:6px 0;
+    }
+    .sign{
+        font-size:22px;
+        font-weight:400;
+        margin:0;
+        text-align:center;
+        margin-bottom:5vh;
+    }
+    .link1{
+        font-size:16px;
+        margin-right:46%;
+    }
+    .signup{
+            margin-top:15vh;
+    }
+    .form1{
+            padding-top:20px;
+            padding-bottom:20px;
+            padding-left:10%;
+            padding-right:10%;
+            border-radius:5px;
+            background-color: white;
+    }
+    </style>
+    </body>
+</html>
