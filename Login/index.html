@@ -20,12 +20,12 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col col-xs-10 col-sm-9 col-md-7 col-lg-5 signup">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
+                    <ul class="nav nav-tabs text-center bg-white" id="myTab" style="border-radius: 5px 5px 0px 0px;" role="tablist">
+                        <li class="nav-item" style="width: 50%; font-size: 20px; font-weight: 400;">
                           <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login"
                             aria-selected="true">Log In</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="width: 50%; font-size: 20px; font-weight: 400;">
                           <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
                             aria-selected="false">Sign Up</a>
                         </li>
@@ -55,12 +55,12 @@
                                     <button class="btn btn-primary mt-3 mb-4 ml-auto mr-auto" style="width:60%;font-size: 0.85rem;"><i class="fas fa-lock mr-3" style="font-size: 1.05rem;"></i>Login Securely</button>
                                 </div>
                                 <div class="form-group text-center">
-                                    <a href="../forgot_password" class="ml-auto mr-auto link1">Forgot password?</a>
+                                    <a href="../forgot_password" style="font-weight: 400;" class="ml-auto mr-auto link1">Forgot password?</a>
                                 </div>
-                                <div class="form-group" style="font-size:20px;">
+                                <!-- <div class="form-group" style="font-size:20px;">
                                     <small class="mr-2">Don't have an account?</small>
                                     <small><a href="../user/features/signup.php">Sign Up</a></small>
-                                </div>
+                                </div> -->
                             </form>
                         </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -69,9 +69,14 @@
                                     <p class="sign">Sign Up</p>
                                 </div>
                                 <div class="md-form md-outline">
+                                    <i class="far fa-user prefix"></i>
+                                    <input style="font-size: 18px !important;" type="email" id="inputIconEx1" class="form-control">
+                                    <label style="font-size: 16.5px !important;" for="inputIconEx1">Enter Your Name</label>
+                                </div>
+                                <div class="md-form md-outline">
                                     <i class="fas fa-envelope prefix"></i>
                                     <input style="font-size: 18px !important;" type="email" id="inputIconEx1" class="form-control">
-                                    <label style="font-size: 16.5px !important;" for="inputIconEx1">Enter E-mail</label>
+                                    <label style="font-size: 16.5px !important;" for="inputIconEx1">Enter Your E-mail</label>
                                 </div>
                                 <div class="md-form md-outline">
                                     <i class="fas fa-user prefix"></i>
@@ -87,10 +92,10 @@
                                 <div class="row">
                                     <button class="btn btn-primary mt-3 mb-4 ml-auto mr-auto" style="width:60%;font-size: 0.85rem;"><i class="fas fa-lock mr-3" style="font-size: 1.05rem;"></i>Signup Securely</button>
                                 </div>
-                                <div class="form-group" style="font-size:20px;">
+                                <!-- <div class="form-group" style="font-size:20px;">
                                     <small class="mr-2">Don't have an account?</small>
                                     <small><a href="../user/features/signup.php">Sign Up</a></small>
-                                </div>
+                                </div> -->
                             </form>
                         </div>
                       </div>
