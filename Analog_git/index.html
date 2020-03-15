@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Analog Elec.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body style="margin-left: 0;">
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container"><a class="navbar-brand" href="#">Harshil Shah (18BEC035) - Analog Cir.</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Inverting op-amp</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Non-inverting op-amp</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row ml-3" style="margin-top:12vh;">
+            <h3>Inverting Op-Amp</h3>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 col-md-3">
+                <input type="number" class="form-control my-2" placeholder="Enter Vin (mV)" onkeyup="check()" id="vin">
+            </div>
+            <div class="col-12 col-md-3">
+                <input type="number" class="form-control my-2" placeholder="Enter Rf (kΩ)" onkeyup="check()" id="rf">
+            </div>
+            <div class="col-12 col-md-3">
+                <input type="number" class="form-control my-2" placeholder="Enter R1 (kΩ)" onkeyup="check()" id="r1">
+            </div>
+            <div class="col-12 col-md-3">
+                <input type="number" class="form-control my-2" placeholder="Vcc (V)" onkeyup="check()" id="vcc">
+                <button class="btn btn-primary mt-3 ml-2" id="calc" onclick="calculate()" disabled>Calculate</button>
+            </div>
+        </div>
+        <div class="row ml-2">
+            <img src="invert.png" class="m" style="height: 250px; width: auto;">
+        </div>
+        <div class="row pl-3 mt-4">
+            <p id="result">Gain=</p>
+        </div>
+        <div class="row pl-3">
+            <p id="result1">Vout=</p>
+        </div>
+        <div class="row pl-3">
+            <p id="result2"></p>
+        </div>
+        <div class="row ml-3" style="margin-top:12vh;">
+            <h3>Non-Inverting Op-Amp</h3>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 col-md-3">
+                <input type="number" class="form-control my-2" placeholder="Enter Vin (mV)" onkeyup="check1()" id="vin1">
+            </div>
+            <div class="col-12 col-md-3">
+                <input type="number" class="form-control my-2" placeholder="Enter Rf (kΩ)" onkeyup="check1()" id="rf1">
+            </div>
+            <div class="col-12 col-md-3">
+                <input type="number" class="form-control my-2" placeholder="Enter R1 (kΩ)" onkeyup="check1()" id="r11">
+            </div>
+            <div class="col-12 col-md-3">
+                <input type="number" class="form-control my-2" placeholder="Enter Vcc (V)" onkeyup="check1()" id="vcc1">
+                <button class="btn btn-primary mt-3 ml-2" id="calc1" onclick="calculate1()" disabled>Calculate</button>
+            </div>
+        </div>
+        <div class="row ml-2">
+            <img src="non_invert.png" class="m" style="height: 250px; width: auto;">
+        </div>
+        <div class="row pl-3 mt-4">
+            <p id="result12">Gain=</p>
+        </div>
+        <div class="row pl-3">
+            <p id="result121">Vout=</p>
+        </div>
+        <div class="row pl-3">
+            <p id="result1211"></p>
+        </div>
+    </div>
+    <section class="footer" style="background-color:rgba(0,0,0,0.75);">
+        <div class="container-fluid px-0">
+                <div class="row mx-0">
+                 &nbsp;
+                </div>
+               <div class="row mx-0">
+                   <div class="col d-flex justify-content-center mt-3 mb-3 text1">
+                           Website Built by &nbsp;<span>Harshil Shah</span>
+                   </div>
+               </div>
+               <div class="row mx-0 mt-3 pb-3">
+                   <div class="col d-flex justify-content-center mt-0 mb-2 text2">
+                           Contact me at &nbsp;<span><a style="color:#f7f7f7;" href="mailto:18bec035@nirmauni.ac.in">18bec035@nirmauni.ac.in</span>
+                   </div>
+               </div>
+        </div>
+    </section>
+    <style>
+        *{
+            font-size:18px;
+        }
+        .text1{
+            font-family: 'Montserrat', sans-serif;
+            cursor:pointer;
+            color:#d5d5d5;
+        }
+        .text2{
+            font-family: 'Montserrat', sans-serif;
+            cursor:pointer;
+            font-size:80%;
+            color:#d5d5d5;
+        }
+        .text2:hover, .text2:active{
+            color:#f7f7f7;
+        }
+        .text2 span{
+            font-weight:500;
+        }
+        .text1:hover, .text1:active{
+            color:#f7f7f7;
+        }
+        .text1 span{
+            font-weight:500;
+        }
+        .link1{
+            text-decoration:none;
+            font-family: 'Montserrat', sans-serif;
+            cursor:pointer;
+            color:#d5d5d5;
+        }
+        .link1:hover, .link1:active{
+            text-decoration:none;
+            color:#f7f7f7;
+        }
+     </style>
+    <script>
+        function check(){
+            var vin = document.getElementById("vin").value;
+            var rf = document.getElementById("rf").value;
+            var r1 = document.getElementById("r1").value;
+            var vcc = document.getElementById("vcc").value;
+            if(vin != '' && rf!='' && r1 != '' && vcc != ''){
+                document.getElementById('calc').disabled = false;
+            }
+            else{
+                document.getElementById('calc').disabled = true;
+            }
+        }
+        function calculate(){
+            var vin = document.getElementById("vin").value;
+            var rf = document.getElementById("rf").value;
+            var r1 = document.getElementById("r1").value;
+            var vcc = document.getElementById("vcc").value;
+            var gain,vout,vcc;
+            if(vin != '' && rf!='' && r1 != '' && vcc != ''){
+                gain = -(rf/r1);
+                vout = (gain*vin);
+            }
+            var disp_gain = "Gain="+gain;
+            var vout_gain = "Vout="+vout+" (mV)";
+            if(vout>vcc)
+                document.getElementById('result2').innerHTML='Conclusion : Here Vout>Vcc, hence the op-amp is satured';
+            else
+                document.getElementById('result2').innerHTML='';
+            document.getElementById('result').innerHTML=disp_gain;
+            document.getElementById('result1').innerHTML=vout_gain;
+        }
+        function check1(){
+            var vin = document.getElementById("vin1").value;
+            var rf = document.getElementById("rf1").value;
+            var r1 = document.getElementById("r11").value;
+            var vcc1 = document.getElementById("vcc1").value;
+            if(vin != '' && rf!='' && r1 != '' && vcc1 != ''){
+                document.getElementById('calc1').disabled = false;
+            }
+            else{
+                document.getElementById('calc1').disabled = true;
+            }
+        }
+        function calculate1(){
+            var vin1 = document.getElementById("vin1").value;
+            var rf1 = document.getElementById("rf1").value;
+            var r11 = document.getElementById("r11").value;
+            var vcc = document.getElementById("vcc1").value;
+            var gain,vout,vcc;
+            if(vin1 != '' && rf1!='' && r11 != '' && vcc != ''){
+                gain = 1+(rf1/r11);
+                vout = (gain*vin1);
+            }
+            var disp_gain = "Gain="+gain;
+            var vout_gain = "Vout="+vout+" (mV)";
+            if(vout>vcc)
+                document.getElementById('result1211').innerHTML='Conclusion : Here Vout>Vcc, hence the op-amp is satured';
+            else
+                document.getElementById('result1211').innerHTML='';
+            document.getElementById('result12').innerHTML=disp_gain;
+            document.getElementById('result121').innerHTML=vout_gain;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
