@@ -8,19 +8,17 @@
         <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <!-- Bootstrap core CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet"> 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
     <title>Alu-connect</title>
 </head>
 <body>
     <header>
-        <nav class="navbar fixed-top bg-primary navbar-expand-lg navbar-dark scrolling-navbar">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
             <div class="container">
-                <a class="navbar-brand" href="#"><strong>Alu-connect</strong></a>
+                <a class="navbar-brand" href="#" style="font-weight: 100;"><strong>Alu-connect</strong></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,12 +45,13 @@
             </div>
         </nav>
         <div class="container">
-            <div class="row" style="margin-top: 200px;">
-                <div class="col-12 col-lg-6 text-primary text-center" style="font-weight: 600;">
-                    <h1>Welcome to Alumni Community</h1>
+            <div class="row" style="padding-top: 200px;">
+                <div class="col-12 col-lg-6 text-white text-center" style="font-weight: 300;">
+                    <h1 style="font-size: 55px;">Welcome to Alumni Community</h1>
                 </div>
-                <div class="d-none d-lg-block col-md-6">
-                   <div class="card bg-light px-3">
+                <div class="d-none d-xl-block col-xl-1"></div>
+                <div class="d-none d-lg-block col-lg-6 col-xl-5">
+                   <div class="card bg-white px-3">
                        <div class="card-body">
                            <div class="text-center">
                                <h3 class="text-black">
@@ -73,7 +72,7 @@
                                     <label for="pass" class="text-black">Password</label>
                                 </div>
                                 <div class="row">
-                                    <button class="btn mt-3 mb-4 ml-auto mr-auto" style="background-color:#66bb6a;width:60%;font-size: 0.85rem;"><i class="fas fa-lock mr-3" style="font-size: 1.05rem;"></i>Login Securely</button>
+                                    <button class="btn btn-primary mt-3 mb-4 ml-auto mr-auto" style="width:60%;font-size: 0.85rem;"><i class="fas fa-lock mr-3" style="font-size: 1.05rem;"></i>Login Securely</button>
                                 </div>
                            </form>
                        </div>
@@ -93,8 +92,14 @@
     </body>
     <style>
         *{
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Lato', sans-serif;
             font-weight: 400;
+        }
+        header{
+            min-height: 100vh;
+            background-image:  linear-gradient(rgba(0, 0, 0, 0.6),rgba(0,0,0,0.6)), url('imgs/bg.jpg');
+            background-repeat: none;
+            background-size: cover;
         }
         .top-nav-collapse {
             background-color: #000;
