@@ -189,6 +189,105 @@
                         <!-- END PROJECT LOOP HERE! -->
                 </div>
             </div>
+
+                <!-- PUBLICATIONS -->
+                <div class="row">
+                    <div class="jumbotron col-12 pt-5">
+                                <!--ADD PUBLICATION MODAL -->
+                        <div class="modal fade" id="add-publication" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold">Add Publication</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <!-- Large outline input -->
+                                    <form action="hello.php" method="post">
+                                        <div class="md-form md-outline">
+                                            <input id="publication-title" class="form-control" type="text" required>
+                                            <label for="publication-title">Publication Name</label>
+                                        </div>
+                                        <div class="md-form md-outline">
+                                            <input id="publication-link" class="form-control" type="url" required>
+                                            <label for="publication-link">Publication Link</label>
+                                        </div>
+                                        <div class="md-form md-outline">
+                                            <textarea id="publication-description" class="md-textarea form-control" rows="4" required></textarea>
+                                            <label for="publication-description">Publication Decription</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-center">
+                                        <button class="btn btn-primary" type="submit">Add Publication</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <h2 class="h3 text-muted ml-3">Publications</h2>
+                            <a href="" class="ml-auto" data-toggle="modal" data-target="#modalLoginForm"><i class="fas fa-plus text-primary fa-2x mr-3"></i></a>
+                        </div>
+                        <hr class="my-4">
+                                <!-- PUBLICATION RUN LOOP HERE FOR DISPLAYING ALL PROJECTS-->
+                            <div class="d-flex align-items-center">
+                                <h4 class="h4 ml-3 text-primary">Alu-connect</h4>
+                                <a class="ml-auto mr-4" data-toggle="collapse" href="#add-publication" aria-expanded="false" aria-controls="collapseExample">
+                                    <i class="fas fa-angle-down fa-2x"></i>
+                                </a>
+                            </div>
+                                <!-- PUBLICATION DESCRIPTION -->
+                                    <div class="collapse" id="collapseExample">
+                                        <div class="d-flex align-items-center">
+                                            <div class="my-3 ml-3">
+                                                This publication was written to help connection students with their Alumnis.
+                                            </div>
+                                            <a href="" class="ml-auto" data-toggle="modal" data-target="#publication-edit-form"><i class="fas fa-pen text-primary mr-5 ml-auto"></i></a>
+                                        </div>
+                                                    <!--PUBLICATION EDIT MODAL -->
+                                            <div class="modal fade" id="publication-edit-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header text-center">
+                                                        <h4 class="modal-title w-100 font-weight-bold">Edit Publication</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body mx-3">
+                                                        <!-- Large outline input -->
+                                                        <form action="" method="post">
+                                                            <div class="md-form md-outline">
+                                                                <input id="publication-title" value="Studybooster" class="form-control" type="text" required>
+                                                                <label for="publication-title">Publication Name</label>
+                                                            </div>
+                                                            <div class="md-form md-outline">
+                                                                <input id="publicaiton-link" value="https://studybooster.co.in" class="form-control" type="url" required>
+                                                                <label for="publication-link">Publication Link</label>
+                                                            </div>
+                                                            <div class="md-form md-outline">
+                                                                <textarea id="publication-description" class="md-textarea form-control" rows="4" required>This project was built to help university students to estimate pointers based on their performance in various exams.</textarea>
+                                                                <label for="publication-description">Publication Decription</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-center">
+                                                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <a href="https://www.studybooster.co.in" target="_blank" class="mt-4 ml-3">View Project<i class="fas fa-external-link-alt ml-1"></i></a>
+                                    </div>
+                                    <hr>
+                                <!-- PROJECT DESCRIPTION -->
+                            <!-- END PROJECT LOOP HERE! -->
+                    </div>
+                </div>
         </div>
     </section>
     <!-- JQuery -->
