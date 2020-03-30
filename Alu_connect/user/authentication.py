@@ -9,6 +9,8 @@ class ModifiedBackend(BaseBackend):
         else:
             try:
                 user = User.objects.get(username=username)
+                if password != user.password:
+                    return None
             except User.DoesNotExist:
                 try:
                     user = User.objects.get(email=username)
