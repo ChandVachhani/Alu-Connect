@@ -4,7 +4,7 @@ from user.forms import LoginForm
 from django.contrib.auth.models import User
 from user.forms import StudentSignUpForm
 from django.contrib.auth import login as login_user
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,password_validation
 # Create your views here.
 
 def login(request):
