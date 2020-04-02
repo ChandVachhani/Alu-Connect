@@ -25,6 +25,7 @@ def login(request):
         login_form = LoginForm()
     return render(request,'user/login.html',{'form':login_form})
 
+
 def SignUp(request):
     if request.method == 'POST':
         signup_form = StudentSignUpForm(request.POST)
@@ -41,6 +42,8 @@ def SignUp(request):
     else:
         signup_form = StudentSignUpForm(request.POST)
         return render(request,'user/signup.html',{'student_form':signup_form})
+
+
 @login_required
 def alumni(request):
     return render(request,'user/alumni.html')
