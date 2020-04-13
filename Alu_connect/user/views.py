@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from user.forms import LoginForm
@@ -35,12 +36,16 @@ def SignUp(request):
             username = signup_form.cleaned_data['student_username']
             email = signup_form.cleaned_data['student_email']
             password = signup_form.cleaned_data['student_password']
-            student = User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name)
-            return redirect('login')
+            try:
+                student = User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name)
+                return redirect('login')
+            except IntegrityError as error:
+                signup_form.add_error('student_username',error)
+            return render(request, 'user/signup.html', {'student_form': signup_form})
         else:
             return render(request, 'user/signup.html', {'student_form': signup_form})
     else:
-        signup_form = StudentSignUpForm(request.POST)
+        signup_form = StudentSignUpForm()
         return render(request,'user/signup.html',{'student_form':signup_form})
 
 

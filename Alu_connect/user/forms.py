@@ -1,5 +1,5 @@
 from django import forms
-
+from django.contrib.auth import password_validation
 class LoginForm(forms.Form):
     identifier = forms.CharField(max_length=50,
         widget=forms.TextInput(attrs={'class':'form-control',
@@ -10,6 +10,7 @@ class LoginForm(forms.Form):
         'id':'login-password',
         'style':'font-size: 18px !important;',
     }))
+
 
 class StudentSignUpForm(forms.Form):
     student_first_name = forms.CharField(max_length=25,widget=forms.TextInput(attrs={
@@ -37,3 +38,17 @@ class StudentSignUpForm(forms.Form):
         'id': 'signup-password',
         'style': 'font-size: 18px !important;',
     }))
+    def clean_student_password(self):
+        password = self.cleaned_data['student_password']
+        try:
+            password_validation.validate_password(password)
+            return password
+        except forms.ValidationError as errors:
+            self.add_error('student_password',errors)
+
+    def clean_student_email(self):
+        required_domain = '@nirmauni.ac.in'
+        email = self.cleaned_data['student_email']
+        if required_domain not in email:
+            raise forms.ValidationError("Only University E-mail is allowed!")
+        return email
