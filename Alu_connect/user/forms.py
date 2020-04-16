@@ -60,12 +60,12 @@ class AddProjectForm(forms.Form):
         'id' : 'project-title',
         'style' : 'font-size: 18px !important;',
     }))
-    project_Link = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+    project_Link = forms.URLField(max_length=50, widget=forms.TextInput(attrs={
         'class' : 'form-control',
         'id' : 'project-link',
         'style' : 'font-size: 18px !important;',
     }))
-    project_description = forms.CharField(max_length=300, widget=forms.TextInput(attrs={
+    project_description = forms.CharField(max_length=300, widget=forms.Textarea(attrs={
         'class' : 'form-control',
         'id' : 'project-description',
         'style' : 'font-size: 18px !important;',

@@ -46,17 +46,16 @@ class roles(models.Model):
 #         db_table='tags'
 #
 #
-# class projects(models.Model):
-#     name = models.CharField(max_length=20)
-#     url = models.URLField()
-#     title = models.CharField(max_length=20)
-#     description = models.TextField()
-#     tags = models.ManyToManyField(tags,on_delete=models.CASCADE)
-#     modified_date = models.DateField()
-#     class Meta:
-#         db_table='projects'
-#
-#
+class projects(models.Model):
+    name = models.CharField(max_length=20)
+    url = models.URLField()
+    description = models.TextField()
+    #tags = models.ManyToManyField(tags,on_delete=models.CASCADE)
+    modified_date = models.DateField()
+    class Meta:
+        db_table='projects'
+
+
 # class project_tags(models.Model):
 #     tags = models.OneToOneField(tags,on_delete=models.CASCADE)
 #     project = models.OneToOneField(projects,on_delete=models.CASCADE)
