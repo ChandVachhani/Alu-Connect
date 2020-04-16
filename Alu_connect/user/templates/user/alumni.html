@@ -168,17 +168,22 @@
                                                 </div>
                                                 <div class="modal-body mx-3">
                                                     <!-- Large outline input -->
+                                                    {% csfr_token %}
+                                                    {{ add_project_form.errors }}
                                                     <form action="" method="post">
                                                         <div class="md-form md-outline">
+                                                            {{ add_project_form.project_name }}
                                                             <input id="project-title" value="Studybooster" class="form-control" type="text" required>
                                                             <label for="project-title">Project Name</label>
                                                         </div>
                                                         <div class="md-form md-outline">
+                                                            {{ add_project_form.project_link }}
                                                             <input id="project-link" value="https://studybooster.co.in" class="form-control" type="url" required>
                                                             <label for="project-link">Project Link</label>
                                                         </div>
                                                         <div class="md-form md-outline">
-                                                            <textarea id="project-description" class="md-textarea form-control" rows="4" required>This project was built to help university students to estimate pointers based on their performance in various exams.</textarea>
+                                                            {{ add_project_form.project_description }}
+                                                            <textarea id="project-description" class="md-textarea form-control" rows="4" required>{% add_project_form.project_description %}</textarea>
                                                             <label for="project-description">Project Decription</label>
                                                         </div>
                                                     </div>
@@ -189,7 +194,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <a href="https://www.studybooster.co.in" target="_blank" class="mt-4 ml-3">View Project<i class="fas fa-external-link-alt ml-1"></i></a>
+                                    <a href="{% add_project_form.project_link %}" target="_blank" class="mt-4 ml-3">View Project<i class="fas fa-external-link-alt ml-1"></i></a>
                                 </div>
                                 <hr>
                             <!-- PROJECT DESCRIPTION -->

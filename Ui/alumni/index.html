@@ -168,7 +168,7 @@
                                                 </div>
                                                 <div class="modal-body mx-3">
                                                     <!-- Large outline input -->
-                                                    <form action="" method="post">
+                                                    <form action="" method="POST">
                                                         <div class="md-form md-outline">
                                                             <input id="project-title" value="Studybooster" class="form-control" type="text" required>
                                                             <label for="project-title">Project Name</label>
@@ -267,16 +267,21 @@
                                                     </div>
                                                     <div class="modal-body mx-3">
                                                         <!-- Large outline input -->
-                                                        <form action="" method="post">
+                                                        <form action="" method="Post">
+                                                            {% csfr_token %}
+                                                            {{ add_project_form.errors }}
                                                             <div class="md-form md-outline">
+                                                                {{ add_project_form.project_name }}
                                                                 <input id="publication-title" value="Alu-connect" class="form-control" type="text" required>
                                                                 <label for="publication-title">Publication Name</label>
                                                             </div>
                                                             <div class="md-form md-outline">
+                                                                {{ add_project_form.project_link }}
                                                                 <input id="publicaiton-link" value="https://studybooster.co.in/alu-connect" class="form-control" type="url" required>
                                                                 <label for="publication-link">Publication Link</label>
                                                             </div>
                                                             <div class="md-form md-outline">
+                                                                {{ add_project_form.project_description }}
                                                                 <textarea id="publication-description" class="md-textarea form-control" rows="4" required>This publication was written to help connection students with their Alumnis.</textarea>
                                                                 <label for="publication-description">Publication Decription</label>
                                                             </div>
