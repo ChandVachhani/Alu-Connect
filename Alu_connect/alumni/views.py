@@ -16,31 +16,49 @@ from .algorithms import lcs,sort
 @login_required
 def alumni(request):
     if request.POST:
-        add_project_form = AddProjectForm(request.POST)
-        if add_project_form.is_valid():
-            project_name = add_project_form.cleaned_data['project_name']
-            project_link = add_project_form.cleaned_data['project_Link']
-            project_description = add_project_form.cleaned_data['project_description']
-            project = projects.objects.create(name=project_name,url=project_link,description=project_description,alumni=request.user)
-            return redirect('alumni')
-        else:
-            user_projects = extract_projects(request)
+        key = 'id'
+        if key not in request.POST.keys():
+            add_project_form = AddProjectForm(request.POST)
+            if add_project_form.is_valid():
+                project_name = add_project_form.cleaned_data['project_name']
+                project_link = add_project_form.cleaned_data['project_Link']
+                project_description = add_project_form.cleaned_data['project_description']
+                project = projects.objects.create(name=project_name,url=project_link,description=project_description,alumni=request.user)
+                return redirect('alumni')
+            else:
+                user_projects = extract_projects(request)
 
-            context_dict = {'add_project_form': add_project_form, 'projects': user_projects}
-            return render(request, 'alumni/main.html', context_dict)
+                context_dict = {'add_project_form': add_project_form, 'projects': user_projects}
+                return render(request, 'alumni/main.html', context_dict)
+        else:
+            edit_form = EditProjectForm(request.POST)
+            if edit_form.is_valid():
+                project_name = edit_form.cleaned_data['project_name']
+                project_Link = edit_form.cleaned_data['project_Link']
+                project_decription = edit_form.cleaned_data['project_description']
+                project_id = edit_form.cleaned_data['id']
+                project = projects.objects.get(pk=project_id)
+                project.name = project_name
+                project.url = project_Link
+                project.description = project_decription
+                project.save()
+                return redirect('alumni')
     else:
         user_projects = extract_projects(request)
         user_projects = list(user_projects)
         add_project_form = AddProjectForm()
-        edit_form_list = []
+        all_forms_list = []
+        i=0
         for project in user_projects:
             form_dict = {'id':project.pk,'project_name':project.name,
                          'project_Link':project.url,
                          'project_description':project.description,}
             edit_form = EditProjectForm(form_dict)
-            edit_form_list.append(edit_form)
+            li = [user_projects[i], edit_form]
+            all_forms_list.append(li)
+            i+=1
         total_projects = extract_projects(request).count()
-        context_dict = {'add_project_form':add_project_form,'projects':user_projects,'edit_form_list':edit_form_list,'total_projects':total_projects,'range':range(total_projects)}
+        context_dict = {'add_project_form':add_project_form,'projects':all_forms_list,'total_projects':total_projects}
         return render(request, 'alumni/main.html', context_dict)
         
 
