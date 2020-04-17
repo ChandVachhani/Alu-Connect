@@ -22,24 +22,23 @@ class roles(models.Model):
         db_table='roles'
 
 
-# class user_profile(models.Model):
-#     profile_img = models.ImageField()
-#     college = models.ForeignKey(college, on_delete=models.CASCADE)
-#     branch = models.ForeignKey(branch,on_delete=models.CASCADE)
-#     description = models.TextField()
-#     password = models.CharField(max_length=16,)
-#     user_role = models.ManyToManyField(roles,through='user_roles')
-#     class Meta:
-#         db_table='user_profile'
-#
-#
-# class user_roles(models.Model):
-#     roles = models.OneToOneField(roles,on_delete=models.CASCADE)
-#     user = models.OneToOneField(user_profile,on_delete=models.CASCADE)
-#     class Meta:
-#         db_table='user_roles'
-#
-#
+class user_profile(models.Model):
+    profile_img = models.ImageField(null=True)
+    college = models.ForeignKey(college, on_delete=models.CASCADE,null=True)
+    branch = models.ForeignKey(branch,on_delete=models.CASCADE,null=True)
+    description = models.TextField(null=True)
+    user_role = models.ManyToManyField(roles,through='user_roles',null=True)
+    class Meta:
+        db_table='user_profile'
+
+
+class user_roles(models.Model):
+    roles = models.ForeignKey(roles,on_delete=models.CASCADE)
+    user = models.ForeignKey(user_profile,on_delete=models.CASCADE)
+    class Meta:
+        db_table='user_roles'
+
+
 # class tags(models.Model):
 #     name = models.CharField(max_length=40)
 #     class Meta:
@@ -57,8 +56,8 @@ class projects(models.Model):
 
 
 # class project_tags(models.Model):
-#     tags = models.OneToOneField(tags,on_delete=models.CASCADE)
-#     project = models.OneToOneField(projects,on_delete=models.CASCADE)
+#     tags = models.ForeignKey(tags,on_delete=models.CASCADE)
+#     project = models.ForeignKey(projects,on_delete=models.CASCADE)
 #     class Meta:
 #         db_table='project_tags'
 #

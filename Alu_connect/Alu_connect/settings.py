@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'user',
     'alumni',
+    'student',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
