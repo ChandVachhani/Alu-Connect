@@ -69,4 +69,9 @@ class AddProjectForm(forms.Form):
         'class' : 'form-control',
         'id' : 'project-description',
         'style' : 'font-size: 18px !important;',
+        'rows':'5'
     }))
+
+class EditProjectForm(AddProjectForm):
+    id = forms.IntegerField()
+    field_order = ['id','project_name','project_Link','project_description']

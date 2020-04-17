@@ -49,10 +49,14 @@ class projects(models.Model):
     name = models.CharField(max_length=20)
     url = models.URLField()
     description = models.TextField()
+    alumni = models.ForeignKey(User,on_delete=models.CASCADE)
     #tags = models.ManyToManyField(tags,on_delete=models.CASCADE)
-    modified_date = models.DateField()
+    date_added = models.DateTimeField(auto_now_add=True,null=True)
     class Meta:
         db_table='projects'
+    def __str__(self):
+        return self.name
+
 
 
 # class project_tags(models.Model):
