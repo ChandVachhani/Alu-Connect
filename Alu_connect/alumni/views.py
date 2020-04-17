@@ -4,7 +4,7 @@ from user.forms import AddProjectForm,EditProjectForm
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from .functions import extract_projects
-from user.models import projects, publications
+# from user.models import projects, publications
 from django.contrib.auth.models import User
 from user.forms import AddProjectForm
 from django.db import IntegrityError
@@ -48,7 +48,7 @@ def alumni(request):
 def search_for_person(request):
     if request.GET:
         para_dict = request.GET
-        value = para_dict['search-result']
+        value = para_dict['people']
         total_person = User.objects.all().order_by('Username')
         search_count=0
         search_list = []
