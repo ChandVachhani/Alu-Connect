@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter.ttk import Combobox
 from queue import Queue
 from tkinter import messagebox as mbox
-# from tabulate import tabulate
 
 
 def fifo(pages, n, capacity):
@@ -240,7 +239,7 @@ paging = Tk()
 paging.geometry("1000x650")
 paging.configure(bg="linen")
 paging.resizable(0, 0)
-# paging.iconbitmap('i1.ico')
+paging.iconbitmap('i1.ico')
 paging.title("Page Replacement Algorithms")
 
 label = Label(
