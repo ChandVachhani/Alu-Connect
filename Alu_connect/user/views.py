@@ -4,7 +4,8 @@ from user.forms import LoginForm
 from django.contrib.auth.models import User
 from user.forms import StudentSignUpForm
 from django.contrib.auth import login as login_user
-from django.contrib.auth import authenticate,password_validation
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate,password_validation,logout
 from .models import user_profile,roles,user_roles
 # Create your views here.
 
@@ -31,6 +32,10 @@ def login(request):
         login_form = LoginForm()
     return render(request,'user/login.html',{'form':login_form})
 
+@login_required
+def logout_user(request):
+    logout(request)
+    return redirect('main-page')
 
 def SignUpStudent(request):
     if request.method == 'POST':
