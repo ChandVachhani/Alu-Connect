@@ -16,6 +16,7 @@
 </head>
 <body>
     <header>
+        {% load static %}
         <nav class="navbar fixed-top navbar-expand-lg bg-primary navbar-dark scrolling-navbar">
             <div class="container">
                 <!-- <a class="navbar-brand" href="#" style="font-weight: 100;"><strong>Alu-connect</strong></a>
@@ -59,23 +60,20 @@
         <div class="container">
             <div class="row px-1">
                 <div class="jumbotron col-9 pt-0 px-0">
-                    <div class="text-center pt-5 pb-4" style="background-image:url('img/alu-bg.jpg');">
-                        <img src="img/profile.png" class="rounded-circle img-fluid" alt="Profile Pic">
-                        <h3 class="mt-3 text-white" style="font-weight: 400;">User's Name</h3>
+                    <div class="text-center pt-5 pb-4" style="background-image:url('{% static 'img/alu-bg.jpg' %}');">
+                        <img src="{% static 'img/profile.png' %}" class="rounded-circle img-fluid" alt="Profile Pic">
+                        <h3 class="mt-3 text-white" style="font-weight: 400;">{{ user.first_name }} {{ user.last_name }}</h3>
                     </div>
                     <hr class="mb-4 mt-0">
                     <div class="d-flex flex-wrap justify-content-center mt-5">
                         <button type="button" class="btn btn-info mx-3" style="border-radius:3px;font-size:1.2rem; text-transform:none; font-weight: 400 !important;">
                             Connections <span class="badge badge-danger ml-2">10</span>
-                            <span class="sr-only">unread messages</span>
                         </button>
                         <button type="button" class="btn btn-primary mx-3"  style="border-radius:3px;font-size:1.2rem; text-transform:none; font-weight: 400 !important;">
                             Projects <span class="badge badge-danger ml-2">{{ total_projects }}</span>
-                            <span class="sr-only">unread messages</span>
                         </button>
                         <button type="button" class="btn btn-success mx-3"  style="border-radius:3px;font-size:1.2rem; text-transform:none; font-weight: 400 !important;">
                             Publications <span class="badge badge-danger ml-2">2</span>
-                            <span class="sr-only">unread messages</span>
                         </button>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle mx-3" data-toggle="dropdown" aria-haspopup="true"

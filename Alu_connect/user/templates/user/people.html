@@ -8,13 +8,14 @@
         <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
     <title>Alu-connect</title>
 </head>
-<body>
+<body style="background-color: #f7f7f7;">
+{% load static %}
     <header>
         <nav class="navbar fixed-top navbar-expand-lg bg-primary navbar-dark scrolling-navbar">
             <div class="container">
@@ -24,8 +25,8 @@
                 <span class="navbar-toggler-icon"></span>
                 </button> -->
                 <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
-                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="hello.php">
-                      <input class="form-control" type="search" placeholder="Search for People" name="people" aria-label="Search">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_person' %}">
+                      <input class="form-control" type="search" value="{{ search_result }}" placeholder="Search for People" name="people" aria-label="Search">
                       <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
                     </form>
                 </nav>
@@ -54,86 +55,33 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <div class="row" style="padding-top: 180px;">
-                
-                    <!-- SIGNIN CARD -->
-                <div class="mb-5 d-none d-lg-block col-lg-6 col-xl-7">
-                   <div class="card bg-white px-3">
-                       <div class="card-body">  
-                        <div>
-                            <span class="badge badge-default">Default</span>
-                            <span class="badge badge-primary">Primary</span>
-                            <span class="badge badge-secondary">Secondary</span>
-                            <span class="badge badge-success">Success</span>
-                            <span class="badge badge-danger">Danger</span>
-                            <span class="badge badge-warning">Warning</span>
-                            <span class="badge badge-info">Info</span>
-                            <span class="badge badge-light">Light</span>
-                            <span class="badge badge-dark">Dark</span>
-                        </div>                       
-                        <br>
-                        <div>
-                           <h4>Description</h4>
-                          <hr class="hr-black">
-                           <p>                 
-                               Codeforces is a website that hosts competitive programming contests. It is maintained by a group of competitive programmers from ITMO University led by Mikhail Mirzayanov. Since 2013, Codeforces claims to surpass Topcoder in terms of active contestants. As of 2018, it has over 600,000 registered users. 
-                           </p>
-                        </div>
-                        <br>
-                        <div>
-                            <a href="#">View Publication</a>                        
-                        </div>
-                       </div>
-                   </div>
-                </div>
-                
-                <div class="col-12 col-lg-4 text-white text-center" style="font-weight: 300;">
-                    <h1 style="font-size: 55px; color: black;">Publication Name</h1>
-                </div>
-
-
-                <div class="mb-5 d-none d-lg-block col-lg-6 col-xl-7">
-                    <div class="card bg-white px-3">
-                        <div class="card-body">  
-                         <div>
-                             <span class="badge badge-default">Default</span>
-                             <span class="badge badge-primary">Primary</span>
-                             <span class="badge badge-secondary">Secondary</span>
-                             <span class="badge badge-success">Success</span>
-                             <span class="badge badge-danger">Danger</span>
-                             <span class="badge badge-warning">Warning</span>
-                             <span class="badge badge-info">Info</span>
-                             <span class="badge badge-light">Light</span>
-                             <span class="badge badge-dark">Dark</span>
-                         </div>                       
-                         <br>
-                         <div>
-                            <h4>Description</h4>
-                           <hr class="hr-black">
-                            <p>                 
-                                Codeforces is a website that hosts competitive programming contests. It is maintained by a group of competitive programmers from ITMO University led by Mikhail Mirzayanov. Since 2013, Codeforces claims to surpass Topcoder in terms of active contestants. As of 2018, it has over 600,000 registered users. 
-                            </p>
-                         </div>
-                         <br>
-                         <div>
-                             <a href="#">View Publication</a>                        
-                         </div>
+        <div class="container" style="padding-top: 150px;">
+            {% for people in result %}
+                <div class="row mt-2">
+                    <div class="mb-2 d-none d-lg-block col-lg-8 col-xl-8">
+                       <div class="card bg-white px-3">
+                           <div class="card-body d-flex">
+                                <img src="{% static 'img/profile.png' %}" alt="profile img" style="border-radius: 50%; height: 105px;">
+                                <div class="ml-5">
+                                    <h4>{{ people.first_name }} {{ people.last_name }}</h4>
+                                    <hr class="hr-black">
+                                    <p>
+                                        Student at Nirma University
+                                    </p>
+                                    <a href="">View Profile</a>
+                                </div>
+                                <br>
+                            <div>
                         </div>
                     </div>
-                 </div>
-
-                 <div class="col-12 col-lg-4 text-white text-center" style="font-weight: 300;">
-                    <h1 style="font-size: 55px; color: black;">Publication Name</h1>
                 </div>
-
-                 
-                <div class="d-none d-xl-block col-xl-1"></div>
+              </div>
             </div>
+          {% endfor %}
         </div>
     </header>
         <!-- ABOUT US -->
-    
+
     <footer id="footer" class="page-footer bg-dark" style="padding-top:40px;">
             <!-- MESSAGE US FORM MODAL -->
         <div class="modal fade" id="message-us-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -199,7 +147,7 @@
     <style>
         *{
             font-family: 'Lato', sans-serif;
-            font-weight: 400;            
+            font-weight: 400;
         }
         header{
             min-height: 100vh;

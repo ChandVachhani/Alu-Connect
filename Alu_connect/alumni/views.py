@@ -1,15 +1,11 @@
 from django.shortcuts import render,redirect
 from user.models import projects
-from user.forms import AddProjectForm,EditProjectForm
-from django.db import IntegrityError
-from django.contrib.auth.decorators import login_required
+from user.forms import EditProjectForm
 from .functions import extract_projects
 # from user.models import projects, publications
-from django.contrib.auth.models import User
 from user.forms import AddProjectForm
-from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
-from .algorithms import lcs,sort
+from student.algorithms import lcs,sort
 
 
 # Create your views here.
@@ -60,32 +56,7 @@ def alumni(request):
         total_projects = extract_projects(request).count()
         context_dict = {'add_project_form':add_project_form,'projects':all_forms_list,'total_projects':total_projects}
         return render(request, 'alumni/main.html', context_dict)
-        
 
-
-def search_for_person(request):
-    if request.GET:
-        para_dict = request.GET
-        value = para_dict['people']
-        total_person = User.objects.all().order_by('Username')
-        search_count=0
-        search_list = []
-        max_match = 0
-        for person in total_person:
-            lcs_val = lcs(str(person.Username),value)
-            max_match = max(max_match,lcs_val)
-        for person in total_person:
-            person_tuple = (person,lcs(str(person.Username),value))
-            if(person_tuple[1]>int(max_match/2) and person_tuple[1]>=int(len(value))/2):
-                search_list.append(person_tuple)
-                search_count+=1
-        sort(search_list)
-        final_search_list=[]
-        for i in search_list:
-            final_search_list.append(i[0])
-        context_dict = {'result':final_search_list,'total_result':search_count,'search_result':value}
-        return render(request, 'alumni/main.html',context_dict)
-    return render(request,'alumni/main.html')
 
 def search_for_project(request):
     if request.GET:
