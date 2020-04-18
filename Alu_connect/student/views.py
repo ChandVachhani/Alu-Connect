@@ -1,8 +1,11 @@
 from django.shortcuts import render,redirect
 from .algorithms import lcs,sort
 from django.contrib.auth.models import User
+from user.models import projects
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def search_for_person(request):
     if request.GET:
         para_dict = request.GET
@@ -30,3 +33,29 @@ def search_for_person(request):
         return render(request, 'user/people.html',context_dict)
     else:
         return redirect('main-page')
+
+
+@login_required
+def search_for_projects(request):
+    if request.GET:
+        para_dict = request.GET
+        value = para_dict['projects']
+        total_projects = projects.objects.all().order_by('name')
+        search_count=0
+        search_list = []
+        max_match = 0
+        for project in total_projects:
+            lcs_val = lcs(str(project.name),value)
+            max_match = max(max_match,lcs_val)
+        for project in total_projects:
+            project_tuple = (project,lcs(str(project.name),value))
+            if(project_tuple[1]>int(max_match/2) and project_tuple[1]>=int(len(value))/2):
+                search_list.append(project_tuple)
+                search_count+=1
+        sort(search_list)
+        final_search_list=[]
+        for i in search_list:
+            final_search_list.append(i[0])
+        context_dict = {'result':final_search_list,'total_result':search_count,'search_result':value}
+        return render(request, 'user/projects.html',context_dict)
+    return render(request,'user/projects.html')
