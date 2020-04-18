@@ -6,7 +6,7 @@ from user.forms import StudentSignUpForm
 from django.contrib.auth import login as login_user
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,password_validation,logout
-from .models import user_profile,roles,user_roles
+from .models import user_profile
 # Create your views here.
 
 
@@ -49,8 +49,8 @@ def SignUpStudent(request):
             try:
                 student = User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name)
                 #student_profile = user_profile.objects.create()
-                student_role = roles.objects.get(pk=1)
-                student.roles_set.add(student_role)
+                # student_role = roles.objects.get(pk=1)
+                # student.roles_set.add(student_role)
                 return redirect('login')
             except IntegrityError as error:
                 signup_form.add_error('student_username',error)

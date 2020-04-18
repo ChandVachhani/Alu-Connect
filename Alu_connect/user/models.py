@@ -8,7 +8,7 @@ class projects(models.Model):
     name = models.CharField(max_length=20)
     url = models.URLField()
     description = models.TextField()    
-    date_of_addition = models.DateField()
+    date_of_addition = models.DateField(auto_now_add=True)
     start_date = models.DateField()
     date_of_completion = models.DateField()    
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
@@ -21,7 +21,7 @@ class projects(models.Model):
 class publications(models.Model):
     title = models.CharField(max_length=20)
     url = models.URLField()    
-    date_of_addition = models.DateField()
+    date_of_addition = models.DateField(auto_now_add=True)
     Description = models.CharField(max_length=20)
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     # tags = models.ManyToManyField(tags,on_delete=models.CASCADE)
@@ -51,6 +51,7 @@ class coding_platform(models.Model):
     class Meta:
         db_table='coding_platform'
 
+
 class coding_profile(models.Model):
     rating = models.IntegerField()
     profile_link = models.URLField()
@@ -67,22 +68,19 @@ class branch(models.Model):
     class Meta:
         db_table='branch'
 
+
+
 class college(models.Model):
     name = models.CharField(max_length=100)
     class Meta:
         db_table='college'
 
-class user_roles(models.Model):
-    # role = models.ForeignKey(roles,on_delete=models.CASCADE)
-    # user = models.ForeignKey(user_profile,on_delete=models.CASCADE)
+
+
+class roles(models.Model):
+    name = models.CharField(max_length=30)
     class Meta:
         db_table='user_roles'
-
-# class roles(models.Model):
-#     name = models.CharField(max_length=20)
-#     class Meta:
-#         db_table='roles'
-
 
 
 class user_profile(models.Model):
@@ -91,7 +89,7 @@ class user_profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     branch = models.ForeignKey(branch,on_delete=models.CASCADE,null=True)
     college = models.ForeignKey(college, on_delete=models.CASCADE,null=True)   
-    user_role = models.ManyToManyField(user_roles,through='user_roles',null=True)    
+    user_role = models.ForeignKey(roles,on_delete=models.CASCADE)
     class Meta:
         db_table='user_profile'
 
@@ -102,7 +100,7 @@ class blogs(models.Model):
     picture = models.ImageField()
     content = models.TextField()
     views = models.IntegerField()
-    user = models.ForeignKey(User,on_delete=models.CASCADE)    
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     # tags = models.ManyToManyField(tags,through='blog_tags')
     class Meta:
         db_table='blogs'

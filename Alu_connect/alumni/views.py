@@ -19,7 +19,7 @@ def alumni(request):
                 project_name = add_project_form.cleaned_data['project_name']
                 project_link = add_project_form.cleaned_data['project_Link']
                 project_description = add_project_form.cleaned_data['project_description']
-                project = projects.objects.create(name=project_name,url=project_link,description=project_description,alumni=request.user)
+                project = projects.objects.create(name=project_name,url=project_link,description=project_description,user=request.user,start_date='2020-03-12',date_of_completion='2020-03-12')
                 return redirect('alumni')
             else:
                 user_projects = extract_projects(request)
