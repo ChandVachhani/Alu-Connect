@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from user.models import projects
 from user.forms import EditProjectForm
 from .functions import extract_projects
-# from user.models import projects, publications
+from user.models import projects, publications
 from user.forms import AddProjectForm
 from django.contrib.auth.decorators import login_required
 from student.algorithms import lcs,sort
@@ -105,3 +105,8 @@ def search_for_publication(request):
         context_dict = {'result':final_search_list,'total_result':search_count,'search_result':value}
         return render(request, 'alumni/main.html',context_dict)
     return render(request,'alumni/main.html')
+
+@login_required
+
+def add_blog(request):
+    return render(request,'alumni/blogs.html')

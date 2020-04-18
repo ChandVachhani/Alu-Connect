@@ -18,6 +18,7 @@ class projects(models.Model):
     def __str__(self):
         return self.name
 
+
 class publications(models.Model):
     title = models.CharField(max_length=20)
     url = models.URLField()    
@@ -27,11 +28,16 @@ class publications(models.Model):
     # tags = models.ManyToManyField(tags,on_delete=models.CASCADE)
     class Meta:
         db_table='publications'
+    def __str__(self):
+        return self.title
 
 class tags(models.Model):
     name = models.CharField(max_length=40)
     class Meta:
         db_table='tags'
+    def __str__(self):
+        return self.name
+
 
 class project_tags(models.Model):
     tag = models.ForeignKey(tags,on_delete=models.CASCADE)
@@ -44,13 +50,12 @@ class publication_tags(models.Model):
     publications = models.OneToOneField(publications,on_delete=models.CASCADE)
 
 
-
-
 class coding_platform(models.Model):
     name = models.CharField(max_length=50)
     class Meta:
         db_table='coding_platform'
-
+    def __str__(self):
+        return self.name
 
 class coding_profile(models.Model):
     rating = models.IntegerField()
@@ -59,7 +64,8 @@ class coding_profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     class Meta:
         db_table='coding_profile'
-
+    def __str__(self):
+        return self.user+"'s coding profile"
 
 
 
@@ -67,21 +73,24 @@ class branch(models.Model):
     name = models.CharField(max_length=100)
     class Meta:
         db_table='branch'
-
+    def __str__(self):
+        return self.name
 
 
 class college(models.Model):
     name = models.CharField(max_length=100)
     class Meta:
         db_table='college'
-
+    def __str__(self):
+        return self.name
 
 
 class roles(models.Model):
     name = models.CharField(max_length=30)
     class Meta:
         db_table='user_roles'
-
+    def __str__(self):
+        return self.name
 
 class user_profile(models.Model):
     profile_pic = models.ImageField(null=True)
@@ -92,18 +101,21 @@ class user_profile(models.Model):
     user_role = models.ForeignKey(roles,on_delete=models.CASCADE)
     class Meta:
         db_table='user_profile'
-
+    def __str__(self):
+        return str(self.user.first_name)+"'s profile"
 
 
 class blogs(models.Model):
     title = models.CharField(max_length=20)
-    picture = models.ImageField()
+    picture = models.ImageField(upload_to='!@#khdkjashd821939812!@#!@#__jnd')
     content = models.TextField()
     views = models.IntegerField()
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     # tags = models.ManyToManyField(tags,through='blog_tags')
     class Meta:
         db_table='blogs'
+    def __str__(self):
+        return self.title
 
 class comments(models.Model):
     description = models.TextField()
@@ -122,6 +134,9 @@ class skills(models.Model):
     skill = models.CharField(max_length=30)
     class Meta:
         db_table="skills"
+    def __str__(self):
+        return self.skill
+
 
 class user_skills(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -129,10 +144,13 @@ class user_skills(models.Model):
     class Meta:
         db_table="user_skills"
 
+
 class interview_type(models.Model):
     name = models.CharField(max_length=30)
     class Meta:
         db_table="interview_type"
+    def __str__(self):
+        return self.name
 
 class interview_experience(models.Model):
     interview_type = models.ForeignKey(interview_type, on_delete=models.CASCADE, null=True)
@@ -140,19 +158,24 @@ class interview_experience(models.Model):
     class Meta:
         db_table="interview_experience"
 
+
 class rounds(models.Model):
     name = models.CharField(max_length=30)
     experience = models.CharField(max_length=30)
     interview_exp = models.ForeignKey(interview_experience, on_delete=models.CASCADE, null=True)
     class Meta:
         db_table="rounds"
+    def __str__(self):
+        return self.name
+
 
 class company(models.Model):
     name = models.CharField(max_length=20)
     interview_exp = models.ForeignKey(interview_experience, on_delete=models.CASCADE, null=True)
     class Meta:
         db_table="company"
-
+    def __str__(self):
+        return self.name
 
 #*************************************************************************************************************
 
