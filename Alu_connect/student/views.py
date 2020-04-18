@@ -12,13 +12,16 @@ def search_for_person(request):
         search_list = []
         max_match = 0
         for person in total_person:
-            lcs_val = lcs(str(person.first_name),value)
+            full_name = person.first_name+person.last_name
+            lcs_val = lcs(str(full_name),value)
             max_match = max(max_match,lcs_val)
-        for person in total_person:
-            person_tuple = (person,lcs(str(person.first_name),value))
-            if(person_tuple[1]>int(max_match/2) and person_tuple[1]>=int(len(value))/2):
-                search_list.append(person_tuple)
-                search_count+=1
+        if max_match>len(value)/2:
+            for person in total_person:
+                full_name = person.first_name + person.last_name
+                person_tuple = (person,lcs(str(full_name),value))
+                if(person_tuple[1]>int(max_match/2)):
+                    search_list.append(person_tuple)
+                    search_count+=1
         sort(search_list)
         final_search_list=[]
         for i in search_list:
