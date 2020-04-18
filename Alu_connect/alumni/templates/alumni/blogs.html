@@ -28,54 +28,55 @@
       <div class="text-center">
         <h3 class="dark-grey-text mb-5"><strong>Add Blog</strong></h3>
       </div>
-
-      <!--Body-->
-      <div class="md-form">
-        <input type="text" id="pname" class="form-control">
-        <label for="pname">Blog Title</label>
-      </div>
+        <form action="{% url 'add-blog' %}" method="post" enctype="multipart/form-data">
+          <!--Body-->
+            {% csrf_token %}
+            {{ form.errors }}
+          <div class="md-form">
+            {{ form.blog_title }}
+            <label for="btitle">Blog Title</label>
+          </div>
 
           <!--Material textarea-->
-    <div class="md-form mb-4 pink-textarea active-pink-textarea">
-      <textarea id="pcontent" class="md-textarea form-control" rows="3"></textarea>
-      <label for="pcontent">Blog Content</label>
-    </div>
+        <div class="md-form mb-4 pink-textarea active-pink-textarea">
+          {{ form.blog_content }}
+          <label for="bcontent">Blog Content</label>
+        </div>
 
-    <!-- Basic dropdown -->
-<!-- <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
-  aria-haspopup="true" aria-expanded="false">Tags</button>
+            <!-- Basic dropdown -->
+        <!-- <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Tags</button>
 
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div> -->
-{#    <div class="md-form">#}
-{#      <input type="number" id="price" class="form-control">#}
-{#      <label for="price">Price</label>#}
-{#    </div>#}
-    <br>
-    <br>
-    <!-- Basic dropdown -->
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div> -->
+        {#    <div class="md-form">#}
+        {#      <input type="number" id="price" class="form-control">#}
+        {#      <label for="price">Price</label>#}
+        {#    </div>#}
+            <br>
+            <br>
 
-    <div class="input-group mb-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-      </div>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="pimg" aria-describedby="pimg">
-        <label class="custom-file-label" for="pimg">Upload Image</label>
-      </div>
-    </div>
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+          </div>
+          <div class="custom-file">
+            {{ form.blog_image }}
+            <label class="custom-file-label" for="bimg">Upload Image</label>
+          </div>
+        </div>
 
 
       <div class="text-center mb-3">
-        <button type="button" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Add Blog</button>
+        <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Add Blog</button>
       </div>
         
-
+    </form>
     </div>
 
 

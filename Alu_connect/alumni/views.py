@@ -2,11 +2,11 @@ from django.shortcuts import render,redirect
 from user.models import projects
 from user.forms import EditProjectForm
 from .functions import extract_projects
-from user.models import projects, publications
+from user.models import projects, publications,blogs
 from user.forms import AddProjectForm
 from django.contrib.auth.decorators import login_required
 from student.algorithms import lcs,sort
-
+from .forms import add_blog
 
 # Create your views here.
 @login_required
@@ -108,5 +108,19 @@ def search_for_publication(request):
 
 @login_required
 
-def add_blog(request):
-    return render(request,'alumni/blogs.html')
+def add_blog_view(request):
+    if request.POST:
+        add_blog_form = add_blog(request.POST,request.FILES)
+        if add_blog_form.is_valid():
+            title = add_blog_form.cleaned_data['blog_title']
+            content = add_blog_form.cleaned_data['blog_content']
+            image = add_blog_form.cleaned_data['blog_image']
+            new_blog = blogs.objects.create(title=title,content=content,picture=image,views=0)
+            return redirect('alumni')
+        else:
+            context_dict = {'form':add_blog_form}
+            return render(request,'alumni/blogs.html',context_dict)
+    else:
+        add_blog_form = add_blog()
+        context_dict = {'form':add_blog_form}
+        return render(request,'alumni/blogs.html',context_dict)
