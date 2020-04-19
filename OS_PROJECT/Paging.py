@@ -2,90 +2,73 @@ from tkinter import *
 from tkinter.ttk import Combobox
 from queue import Queue
 from tkinter import messagebox as mbox
+import xlwt 
+from xlwt import Workbook 
+from paging_algo import lru,opr,fifo
 
+ex_qu=[]
+ex_size=[]
+ex_page_faults=[]
+ex_ans=[]
+ex_str=[]
+ex_algo=[]
+ex_que_size=[]
 
-def fifo(pages, n, capacity):
-    page_faults = 0
-    str1 = ""
-    top = 0
-    f = []
-    for i in pages:
-        if i not in f:
-            if len(f) < capacity:
-                f.append(i)
-            else:
-                f[top] = i
-                top = (top + 1) % capacity
-            page_faults += 1
-        for j in f:
-            str1 += str(j)
-            str1 += ' '
-        str1 += ' || '
-    str1 = str1[:-3]
-    return page_faults, str1
-
-
-def lru(pages, n, capacity):
-    f = []
-    st = []
-    str1 = ""
-    page_faults = 0
-    for i in pages:
-        if i not in f:
-            if len(f) < capacity:
-                f.append(i)
-                st.append(len(f) - 1)
-            else:
-                ind = st.pop(0)
-                f[ind] = i
-                st.append(ind)
-            page_faults += 1
-        else:
-            st.append(st.pop(st.index(f.index(i))))
-        for j in f:
-            str1 += str(j)
-            str1 += ' '
-        str1 += ' || '
-    str1 = str1[:-3]
-    return page_faults, str1
-
-
-def opr(pages, n, capacity):
-    f = []
-    page_faults = 0
-    str1 = ""
-    occur = [None for i in range(capacity)]
-    for i in range(len(pages)):
-        if pages[i] not in f:
-            if len(f) < capacity:
-                f.append(pages[i])
-            else:
-                for x in range(len(f)):
-                    if f[x] not in pages[i + 1:]:
-                        f[x] = pages[i]
-                        break
-                    else:
-                        occur[x] = pages[i + 1:].index(f[x])
-                else:
-                    f[occur.index(max(occur))] = pages[i]
-            page_faults += 1
-        for j in f:
-            str1 += str(j)
-            str1 += ' '
-        str1 += ' || '
-    str1 = str1[:-3]
-    return page_faults, str1
+def on_closing():
+    if mbox.askokcancel("Quit", "Do you want to quit?"):
+        wb = Workbook()
+        style = xlwt.easyxf('font: bold 1, color red;') 
+        sheet1 = wb.add_sheet('Sheet 1')
+        sheet1.write(0,0,'Algorithm',style)
+        sheet1.write(0,1,'Frame_Size',style)
+        sheet1.write(0,2,'String_Length',style)
+        sheet1.write(0,3,'process_String',style)
+        sheet1.write(0,4,'Page_Faults',style)
+        sheet1.write(0,5,'Page_Hit',style)
+        sheet1.write(0,6,'String',style)
+        cnt=2
+        for i in ex_algo:
+            sheet1.write(cnt,0,i)
+            cnt=cnt+1
+        cnt=2
+        for i in ex_size:
+            sheet1.write(cnt,1,i)
+            cnt=cnt+1
+        cnt=2
+        for i in ex_que_size:
+            sheet1.write(cnt,2,i)
+            cnt=cnt+1
+        cnt=2
+        for i in ex_qu:
+            sheet1.write(cnt,3,i)
+            cnt=cnt+1
+        cnt=2
+        for i in ex_page_faults:
+            sheet1.write(cnt,4,i)
+            cnt=cnt+1
+        cnt=2
+        for i in ex_ans:
+            sheet1.write(cnt,5,i)
+            cnt=cnt+1
+        cnt=2
+        for i in ex_str:
+            sheet1.write(cnt,6,i)
+            cnt=cnt+1
+        wb.save('Paging.xls')
+        paging.destroy()
 
 
 def get_values():
     mem_size = ""
     algo_no = ""
     str2 = ""
+    temp_str=""
     process_string = ""
     final = ""
     mem_size = var1.get()
     algo_no = var2.get()
     process_string = var3.get()
+    temp_str=process_string
     if process_string == "":
         mbox.showerror('Error', 'Please Enter Required Information!!')
     elif process_string.isdigit():
@@ -101,14 +84,21 @@ def get_values():
                 ans, str2 = lru(process_string, len(process_string), int(mem_size))
             elif algo_no == "opr":
                 ans, str2 = opr(process_string, len(process_string), int(mem_size))
-
-            temp = min(100, len(str2))
+            ex_final=str2
+            temp = min(125, len(str2))
             for i in range(0, temp):
                 final += str2[i]
         ans1 = len(process_string) - ans
         lbl1.configure(text=ans)
         lbl2.configure(text=ans1)
         lbl3.configure(text=final)
+        ex_size.append(mem_size)
+        ex_qu.append(temp_str)
+        ex_que_size.append(len(temp_str))
+        ex_algo.append(algo_no.upper())
+        ex_page_faults.append(ans)
+        ex_ans.append(ans1)
+        ex_str.append(ex_final)
 
     else:
         if mem_size == "" or algo_no == "":
@@ -224,7 +214,7 @@ def startAlgo():
                  height=1,
                  pady=10
                  )
-    lbl3.place(x=5, y=585)
+    lbl3.place(x=0, y=585)
 
 
 def destroyHome():
@@ -286,4 +276,5 @@ about = Label(
 )
 about.pack()
 
+paging.protocol("WM_DELETE_WINDOW", on_closing)
 paging.mainloop()
