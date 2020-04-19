@@ -5,6 +5,8 @@ from tkinter import messagebox as mbox
 import xlwt 
 from xlwt import Workbook 
 from paging_algo import lru,opr,fifo
+import csv
+import os
 
 ex_qu=[]
 ex_size=[]
@@ -16,46 +18,21 @@ ex_que_size=[]
 
 def on_closing():
     if mbox.askokcancel("Quit", "Do you want to quit?"):
-        wb = Workbook()
-        style = xlwt.easyxf('font: bold 1, color red;') 
-        sheet1 = wb.add_sheet('Sheet 1')
-        sheet1.write(0,0,'Algorithm',style)
-        sheet1.write(0,1,'Frame_Size',style)
-        sheet1.write(0,2,'String_Length',style)
-        sheet1.write(0,3,'process_String',style)
-        sheet1.write(0,4,'Page_Faults',style)
-        sheet1.write(0,5,'Page_Hit',style)
-        sheet1.write(0,6,'String',style)
-        cnt=2
-        for i in ex_algo:
-            sheet1.write(cnt,0,i)
-            cnt=cnt+1
-        cnt=2
-        for i in ex_size:
-            sheet1.write(cnt,1,i)
-            cnt=cnt+1
-        cnt=2
-        for i in ex_que_size:
-            sheet1.write(cnt,2,i)
-            cnt=cnt+1
-        cnt=2
-        for i in ex_qu:
-            sheet1.write(cnt,3,i)
-            cnt=cnt+1
-        cnt=2
-        for i in ex_page_faults:
-            sheet1.write(cnt,4,i)
-            cnt=cnt+1
-        cnt=2
-        for i in ex_ans:
-            sheet1.write(cnt,5,i)
-            cnt=cnt+1
-        cnt=2
-        for i in ex_str:
-            sheet1.write(cnt,6,i)
-            cnt=cnt+1
-        wb.save('Paging.xls')
-        paging.destroy()
+        with open('Paging.csv','a+',newline='') as file:
+            writer = csv.writer(file,delimiter = ',')
+            main_list = []
+            for i in range(len(ex_algo)):
+                list = []
+                list.append(ex_algo[i])
+                list.append(ex_size[i])
+                list.append(ex_que_size[i])
+                list.append(str(ex_qu[i]))
+                list.append(ex_page_faults[i])
+                list.append(ex_ans[i])
+                list.append(ex_str[i])
+                main_list.append(list)
+            writer.writerows(main_list)
+            paging.destroy()
 
 
 def get_values():
@@ -232,6 +209,15 @@ paging.resizable(0, 0)
 paging.iconbitmap('i1.ico')
 paging.title("Page Replacement Algorithms")
 
+
+if not os.path.exists("Paging.csv"):
+    ex_algo.append('Algorithm Used')
+    ex_size.append('Frame Size')
+    ex_que_size.append('String Length')
+    ex_qu.append('Process String')
+    ex_page_faults.append('Page Faults')
+    ex_ans.append('Page Hit')
+    ex_str.append('String')
 label = Label(
     paging,
     text="Page Replacement Algorithms",
