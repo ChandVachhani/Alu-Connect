@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .algorithms import lcs,sort
 from django.contrib.auth.models import User
-from user.models import projects
+from user.models import projects,blogs
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -59,3 +59,9 @@ def search_for_projects(request):
         context_dict = {'result':final_search_list,'total_result':search_count,'search_result':value}
         return render(request, 'user/projects.html',context_dict)
     return render(request,'user/projects.html')
+
+
+def blog_details(request,key):
+    blog = blogs.objects.get(pk=key)
+    context_dict = {'blog':blog}
+    return render(request,'user/detail-blogs.html',context_dict)

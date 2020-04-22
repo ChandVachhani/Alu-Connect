@@ -23,7 +23,6 @@ def alumni(request):
                 return redirect('alumni')
             else:
                 user_projects = extract_projects(request)
-
                 context_dict = {'add_project_form': add_project_form, 'projects': user_projects}
                 return render(request, 'alumni/main.html', context_dict)
         else:
@@ -43,6 +42,7 @@ def alumni(request):
         user_projects = extract_projects(request)
         user_projects = list(user_projects)
         add_project_form = AddProjectForm()
+        all_blogs = blogs.objects.all()
         all_forms_list = []
         i=0
         for project in user_projects:
@@ -54,7 +54,7 @@ def alumni(request):
             all_forms_list.append(li)
             i+=1
         total_projects = extract_projects(request).count()
-        context_dict = {'add_project_form':add_project_form,'projects':all_forms_list,'total_projects':total_projects}
+        context_dict = {'add_project_form':add_project_form,'projects':all_forms_list,'total_projects':total_projects,'all_blogs':all_blogs}
         return render(request, 'alumni/main.html', context_dict)
 
 
@@ -124,3 +124,5 @@ def add_blog_view(request):
         add_blog_form = add_blog()
         context_dict = {'form':add_blog_form}
         return render(request,'alumni/blogs.html',context_dict)
+
+

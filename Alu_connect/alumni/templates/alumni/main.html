@@ -310,10 +310,13 @@
                         <a href="{% url 'add-blog' %}" class="ml-auto"><i class="fas fa-plus text-primary fa-2x mr-3"></i></a>
                     </div>
                     <hr class="my-4">
+                    {% for blog in all_blogs %}
                      <div class="d-flex align-items-center">
-                            <h4 class="h5 ml-3 text-primary">Studybooster</h4>
+                            <h4 class="h5 ml-3 text-primary">{{ blog.title }}</h4>
                      </div>
-                    <a href="https://www.studybooster.co.in" target="_blank" class="mt-5 ml-3">View Blog<i class="fas fa-external-link-alt ml-1"></i></a>
+                    <a href="{% url 'blog-details' blog.pk %}" target="_blank" class="mt-5 ml-3">View Blog<i class="fas fa-external-link-alt ml-1"></i></a>
+                    <hr>
+                    {% endfor %}
                 </div>
             </div>
         </div>
