@@ -69,13 +69,16 @@ def get_values():
         lbl1.configure(text=ans)
         lbl2.configure(text=ans1)
         lbl3.configure(text=final)
-        ex_size.append(mem_size)
-        ex_qu.append(temp_str)
-        ex_que_size.append(len(temp_str))
-        ex_algo.append(algo_no.upper())
-        ex_page_faults.append(ans)
-        ex_ans.append(ans1)
-        ex_str.append(ex_final)
+        if len(ex_size)!=0 and mem_size==ex_size[-1] and temp_str==ex_qu[-1] and algo_no.upper()==ex_algo[-1] :
+        	t=1
+        else :
+	        ex_size.append(mem_size)
+	        ex_qu.append(temp_str)
+	        ex_que_size.append(len(temp_str))
+	        ex_algo.append(algo_no.upper())
+	        ex_page_faults.append(ans)
+	        ex_ans.append(ans1)
+	        ex_str.append(ex_final)
 
     else:
         if mem_size == "" or algo_no == "":
