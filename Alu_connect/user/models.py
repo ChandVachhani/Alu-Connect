@@ -145,6 +145,14 @@ class user_skills(models.Model):
         db_table="user_skills"
 
 
+class company(models.Model):
+    name = models.CharField(max_length=50)
+    class Meta:
+        db_table="company"
+    def __str__(self):
+        return self.name
+
+
 class interview_type(models.Model):
     name = models.CharField(max_length=30)
     class Meta:
@@ -153,6 +161,7 @@ class interview_type(models.Model):
         return self.name
 
 class interview_experience(models.Model):
+    company = models.ForeignKey(company,on_delete=models.CASCADE,null=True)
     interview_type = models.ForeignKey(interview_type, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     class Meta:
@@ -169,13 +178,7 @@ class rounds(models.Model):
         return self.name
 
 
-class company(models.Model):
-    name = models.CharField(max_length=20)
-    interview_exp = models.ForeignKey(interview_experience, on_delete=models.CASCADE, null=True)
-    class Meta:
-        db_table="company"
-    def __str__(self):
-        return self.name
+
 
 #*************************************************************************************************************
 

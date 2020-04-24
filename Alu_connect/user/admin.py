@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import roles,projects,user_profile,skills,user_skills,interview_experience,interview_type,college,branch
+from .models import roles,projects,user_profile,skills,user_skills,interview_experience,interview_type,college,branch,company
 # Register your models here.
 
 admin.site.register(roles)
@@ -11,3 +11,4 @@ admin.site.register(interview_experience)
 admin.site.register(interview_type)
 admin.site.register(college)
 admin.site.register(branch)
+admin.site.register(company)

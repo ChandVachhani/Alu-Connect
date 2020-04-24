@@ -65,3 +65,9 @@ def blog_details(request,key):
     blog = blogs.objects.get(pk=key)
     context_dict = {'blog':blog}
     return render(request,'user/detail-blogs.html',context_dict)
+
+
+def profiles(request,key):
+    alumni = User.objects.get(pk=key)
+    context_dict = {'alumni':alumni}
+    return render(request,'user/profiles.html',context_dict)
