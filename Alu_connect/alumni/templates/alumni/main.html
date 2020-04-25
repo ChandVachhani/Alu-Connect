@@ -303,10 +303,30 @@
                             <!-- END PROJECT LOOP HERE! -->
                     </div>
                 </div>
+            <!-- BLOGS -->
             <div class="row px-1">
                 <div class="jumbotron col-9 pt-5">
                     <div class="d-flex align-items-center" id="projects-section">
                         <h2 class="h4 text-muted ml-3">Blogs</h2>
+                        <a href="{% url 'add-blog' %}" class="ml-auto"><i class="fas fa-plus text-primary fa-2x mr-3"></i></a>
+                    </div>
+                    <hr class="my-4">
+                    {% for blog in all_blogs %}
+                     <div class="d-flex align-items-center">
+                            <h4 class="h5 ml-3 text-primary">{{ blog.title }}</h4>
+                     </div>
+                    <a href="{% url 'blog-details' blog.pk %}" target="_blank" class="mt-5 ml-3">View Blog<i class="fas fa-external-link-alt ml-1"></i></a>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!--   INTERVIEW EXPERIENCE -->
+
+            <div class="row px-1">
+                <div class="jumbotron col-9 pt-5">
+                    <div class="d-flex align-items-center" id="projects-section">
+                        <h2 class="h4 text-muted ml-3">Interview Experience</h2>
                         <a href="{% url 'add-blog' %}" class="ml-auto"><i class="fas fa-plus text-primary fa-2x mr-3"></i></a>
                     </div>
                     <hr class="my-4">
