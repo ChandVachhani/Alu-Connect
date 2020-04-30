@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from user.models import projects
 from user.forms import EditProjectForm
 from .functions import extract_projects
-from user.models import projects, publications,blogs
+from user.models import projects, publications,blogs,coding_platform,coding_profile
 from user.forms import AddProjectForm
 from django.contrib.auth.decorators import login_required
 from student.algorithms import lcs,sort
@@ -54,7 +54,8 @@ def alumni(request):
             all_forms_list.append(li)
             i+=1
         total_projects = extract_projects(request).count()
-        context_dict = {'add_project_form':add_project_form,'projects':all_forms_list,'total_projects':total_projects,'all_blogs':all_blogs}
+        all_coding_profiles = coding_profile.objects.filter(user=request.user)
+        context_dict = {'add_project_form':add_project_form,'projects':all_forms_list,'total_projects':total_projects,'all_blogs':all_blogs,'all_coding_profiles':all_coding_profiles}
         return render(request, 'alumni/main.html', context_dict)
 
 
@@ -125,4 +126,15 @@ def add_blog_view(request):
         context_dict = {'form':add_blog_form}
         return render(request,'alumni/blogs.html',context_dict)
 
+@login_required
 
+def add_coding_profile(request):
+    if request.POST:
+        rating = request.POST['rating_val']
+        coding_url = request.POST['coding_url']
+        coding_platform_id = request.POST['platform']
+        add_coding_profile = coding_profile.objects.create(rating=1410,profile_link=coding_url,platform_id=coding_platform_id,user=request.user)
+        return redirect('alumni')
+    platforms = coding_platform.objects.all()
+    context_dict = {'platforms':platforms}
+    return render(request,'alumni/add_coding_profile.html',context_dict)

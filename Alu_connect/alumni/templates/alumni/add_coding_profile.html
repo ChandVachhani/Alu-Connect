@@ -1,5 +1,5 @@
 <html>
-<head>    
+<head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,71 +13,47 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
-<title></title>    
-</head>   
-<body>     
+<title></title>
+</head>
+<body>
   <center>
 <section class="form-elegant mt-5" style="width: 45%;">
 
   <!--Form without header-->
+
   <div class="card">
 
     <div class="card-body mx-4">
-
+    <form method="post" action="{% url 'add-coding-profile' %}">
+        {% csrf_token %}
       <!--Header-->
       <div class="text-center">
-        <h3 class="dark-grey-text mb-5"><strong>Add Blog</strong></h3>
+        <h3 class="dark-grey-text mb-5"><strong>Add Coding Profile</strong></h3>
       </div>
-        <form action="{% url 'add-blog' %}" method="post" enctype="multipart/form-data">
-          <!--Body-->
-            {% csrf_token %}
-            {{ form.errors }}
-          <div class="md-form">
-            {{ form.blog_title }}
-            <label for="btitle">Blog Title</label>
-          </div>
-
-          <!--Material textarea-->
-        <div class="md-form mb-4 pink-textarea active-pink-textarea">
-          {{ form.blog_content }}
-          <label for="bcontent">Blog Content</label>
+    <select name="platform" class="browser-default custom-select" required>
+          <option selected hidden>Select Coding Platform</option>
+            {% for platform in platforms %}
+              <option value="{{ platform.pk }}">{{ platform.name }}</option>
+            {% endfor %}
+    </select>
+    <div class="md-form">
+      <input type="number" name="rating_val" id="rating" class="form-control" required>
+      <label for="rating">Rating</label>
+    </div>
+    <!-- Material input -->
+        <div class="md-form">
+          <input type="url" name="coding_url" id="url" class="form-control" required>
+          <label for="url">Profile Link</label>
         </div>
-
-            <!-- Basic dropdown -->
-        <!-- <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">Tags</button>
-
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div> -->
-            <br>
-            <br>
-
-        <div class="input-group mb-4">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-          </div>
-          <div class="custom-file">
-            {{ form.blog_image }}
-            <label class="custom-file-label" for="bimg">Upload Image</label>
-          </div>
-        </div>
-
-
       <div class="text-center mb-3">
-        <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Add Blog</button>
+        <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Add Coding Profile</button>
       </div>
-        
-    </form>
+
+
     </div>
 
-
+    </form>
   </div>
-  <!--/Form without header-->
 
 </section>
 </center>

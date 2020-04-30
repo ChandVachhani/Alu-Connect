@@ -132,6 +132,7 @@ class blog_tags(models.Model):
 
 class skills(models.Model):
     skill = models.CharField(max_length=30)
+    user = models.ManyToManyField(User,through='user_skills')
     class Meta:
         db_table="skills"
     def __str__(self):
