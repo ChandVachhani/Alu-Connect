@@ -25,19 +25,25 @@
                 <span class="navbar-toggler-icon"></span>
                 </button> -->
                 <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
-                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="hello.php">
-                      <input class="form-control" type="search" placeholder="Search for People" name="people" aria-label="Search">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_person' %}">
+                      <input class="form-control" type="search" value="" placeholder="Search for People" name="people" aria-label="Search">
+                      <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                    </form>
+                </nav>
+                 <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_blogs' %}">
+                      <input class="form-control" type="search" value="" placeholder="Search for Blogs" name="blogs" aria-label="Search">
+                      <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                    </form>
+                </nav>
+                 <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_projects' %}">
+                      <input class="form-control" type="search" value="" placeholder="Search for Projects" name="projects" aria-label="Search">
                       <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
                     </form>
                 </nav>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mr-3">
-                            <a class="nav-link" href="#"><i class="fas fa-users mr-1" style="font-size: 1.3rem !important;"></i>Connections</a>
-                        </li>
-                        <li class="nav-item mr-3">
-                            <a class="nav-link" href="#"><i class="fas fa-bell mr-1" style="font-size: 1.3rem !important;"></i>Notifications</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                               aria-haspopup="true" aria-expanded="false">
@@ -48,7 +54,7 @@
                               <a class="dropdown-item" href="#" style="font-weight: 400 !important;">View Profile</a>
                               <a class="dropdown-item" href="#" style="font-weight: 400 !important;">Security Settings</a>
                               <div class="dropdown-divider" style="font-weight: 400 !important;"></div>
-                              <a class="dropdown-item" href="#" style="font-weight: 400 !important;">Logout</a>
+                              <a class="dropdown-item" href="{% url 'logout_user' %}" style="font-weight: 400 !important;">Logout</a>
                             </div>
                           </li>
                     </ul>

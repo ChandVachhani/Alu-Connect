@@ -61,6 +61,32 @@ def search_for_projects(request):
     return render(request,'user/projects.html')
 
 
+@login_required
+def search_for_blogs(request):
+    if request.GET:
+        para_dict = request.GET
+        value = para_dict['blogs']
+        total_blogs = blogs.objects.all().order_by('title')
+        search_count=0
+        search_list = []
+        max_match = 0
+        for blog in total_blogs:
+            lcs_val = lcs(str(blog.title),value)
+            max_match = max(max_match,lcs_val)
+        for blog in total_blogs:
+            project_tuple = (blog,lcs(str(blog.title),value))
+            if(project_tuple[1]>int(max_match/2) and project_tuple[1]>=int(len(value))/2):
+                search_list.append(project_tuple)
+                search_count+=1
+        sort(search_list)
+        final_search_list=[]
+        for i in search_list:
+            final_search_list.append(i[0])
+        context_dict = {'result':final_search_list,'total_result':search_count,'search_result':value,}
+        return render(request, 'user/blogs.html',context_dict)
+    return render(request,'user/blogs.html')
+
+
 def blog_details(request,key):
     blog = blogs.objects.get(pk=key)
     context_dict = {'blog':blog}

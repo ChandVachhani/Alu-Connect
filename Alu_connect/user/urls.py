@@ -10,6 +10,7 @@ urlpatterns = [
     path('people',stu_views.search_for_person,name='search_for_person'),
     path('user/logout',views.logout_user,name='logout_user'),
     path('projects/',stu_views.search_for_projects,name='search_for_projects'),
+    path('blogs/',stu_views.search_for_blogs,name='search_for_blogs'),
     path('blogs/<int:key>',stu_views.blog_details,name='blog-details'),
     path('profiles/<int:key>',stu_views.profiles,name='profiles'),
 ]

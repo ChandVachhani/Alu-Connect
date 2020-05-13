@@ -133,7 +133,7 @@ def add_coding_profile(request):
         rating = request.POST['rating_val']
         coding_url = request.POST['coding_url']
         coding_platform_id = request.POST['platform']
-        add_coding_profile = coding_profile.objects.create(rating=1410,profile_link=coding_url,platform_id=coding_platform_id,user=request.user)
+        add_coding_profile = coding_profile.objects.create(rating=rating,profile_link=coding_url,platform_id=coding_platform_id,user=request.user)
         return redirect('alumni')
     platforms = coding_platform.objects.all()
     context_dict = {'platforms':platforms}

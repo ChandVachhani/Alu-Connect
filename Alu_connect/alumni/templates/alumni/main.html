@@ -30,14 +30,20 @@
                       <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
                     </form>
                 </nav>
+                 <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_blogs' %}">
+                      <input class="form-control" type="search" value="{{ search_result }}" placeholder="Search for Blogs" name="blogs" aria-label="Search">
+                      <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                    </form>
+                </nav>
+                 <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_projects' %}">
+                      <input class="form-control" type="search" value="{{ search_result }}" placeholder="Search for Projects" name="projects" aria-label="Search">
+                      <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                    </form>
+                </nav>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mr-3">
-                            <a class="nav-link" href="#"><i class="fas fa-users mr-1" style="font-size: 1.3rem !important;"></i>Connections</a>
-                        </li>
-                        <li class="nav-item mr-3">
-                            <a class="nav-link" href="#"><i class="fas fa-bell mr-1" style="font-size: 1.3rem !important;"></i>Notifications</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                               aria-haspopup="true" aria-expanded="false">
@@ -315,12 +321,12 @@
                         {% for profile in all_coding_profiles %}
                             <div class="d-flex align-items-center">
                                 <h4 class="h5 ml-3 text-primary">{{ profile.platform }}</h4>
-                                <a class="ml-auto mr-4" data-toggle="collapse" href="#hsdkjashjkd" aria-expanded="false" aria-controls="collapseExample">
+                                <a class="ml-auto mr-4" data-toggle="collapse" href="#hsdkj{{ profile.pk }}ashjkd" aria-expanded="false" aria-controls="collapseExample">
                                     <i class="fas fa-angle-down fa-2x"></i>
                                 </a>
                             </div>
                                 <!-- CODING PROFILE DESCRIPTION -->
-                                    <div class="collapse" id="hsdkjashjkd">
+                                    <div class="collapse" id="hsdkj{{ profile.pk }}ashjkd">
                                         <div class="d-flex align-items-center">
                                             <div class="my-3 ml-3">
                                                 Rating: {{ profile.rating }}

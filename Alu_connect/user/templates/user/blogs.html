@@ -61,18 +61,18 @@
             </div>
         </nav>
         <div class="container"style="padding-top: 150px;">
-            {% for project in result%}
+            {% for blog in result%}
                 <div class="row mt-2">
                     <div class="mb-2 d-none d-lg-block col-lg-8 col-xl-8">
                        <div class="card bg-white px-3">
                            <div class="card-body d-flex">
                                 <div class="ml-2">
-                                    <h4>{{ project.name }}</h4>
+                                    <h4>{{ blog.title }}</h4>
                                     <hr class="hr-black">
                                     <p>
-                                        {{ project.description }}
+                                        {{ blog.content }}
                                     </p>
-                                    <a href="{{ project.url }}" target="_blank">View Project</a>
+                                    <a href="{% url 'blog-details' blog.pk %}" target="_blank">Read Full Blog</a>
                                 </div>
                                 <br>
                             <div>
