@@ -1,0 +1,185 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
+    <title>Alu-connect</title>
+</head>
+<body>
+    <header>
+        {% load static %}
+        <nav class="navbar fixed-top navbar-expand-lg bg-primary navbar-dark scrolling-navbar">
+            <div class="container">
+                <!-- <a class="navbar-brand" href="#" style="font-weight: 100;"><strong>Alu-connect</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button> -->
+                <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_person' %}">
+                      <input class="form-control" type="search" value="" placeholder="Search for People" name="people" aria-label="Search">
+                      <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                    </form>
+                </nav>
+                 <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_blogs' %}">
+                      <input class="form-control" type="search" value="" placeholder="Search for Blogs" name="blogs" aria-label="Search">
+                      <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                    </form>
+                </nav>
+                 <nav class="navbar navbar-dark primary-color" style="box-shadow: none;">
+                    <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search_for_projects' %}">
+                      <input class="form-control" type="search" value="" placeholder="Search for Projects" name="projects" aria-label="Search">
+                      <button class="btn btn-info btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+                    </form>
+                </nav>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                              aria-labelledby="navbarDropdownMenuLink-333">
+                              <a class="dropdown-item" href="#" style="font-weight: 400 !important;">View Profile</a>
+                              <a class="dropdown-item" href="#" style="font-weight: 400 !important;">Security Settings</a>
+                              <div class="dropdown-divider" style="font-weight: 400 !important;"></div>
+                              <a class="dropdown-item" href="{% url 'logout_user' %}" style="font-weight: 400 !important;">Logout</a>
+                            </div>
+                          </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="profile" style="padding-top: 180px;">
+        <div class="container">
+            <div class="row px-1">
+                <div class="jumbotron col-9 pt-0 px-0">
+                    <div class="text-center pt-5 pb-4" style="background-image:url('{% static 'img/alu-bg.jpg' %}');">
+                        <img src="{% static 'img/profile.png' %}" class="rounded-circle img-fluid" alt="Profile Pic">
+                        <h3 class="mt-3 text-white" style="font-weight: 400;">User's Name</h3>
+                    </div>
+                    <hr class="mb-4 mt-0">
+                    <div class="d-flex flex-wrap justify-content-center mt-5">
+                        <button type="button" class="btn btn-info mx-3" style="border-radius:3px;font-size:1.2rem; text-transform:none; font-weight: 400 !important;">
+                            Connections <span class="badge badge-danger ml-2">10</span>
+                        </button>
+                        <button type="button" class="btn btn-primary mx-3"  style="border-radius:3px;font-size:1.2rem; text-transform:none; font-weight: 400 !important;">
+                            Projects <span class="badge badge-danger ml-2">{{ alumni.projects_set.count }}</span>
+                        </button>
+                        <button type="button" class="btn btn-success mx-3"  style="border-radius:3px;font-size:1.2rem; text-transform:none; font-weight: 400 !important;">
+                            Publications <span class="badge badge-danger ml-2">2</span>
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle mx-3" data-toggle="dropdown" aria-haspopup="true"
+                              aria-expanded="false" style="border-radius:3px;font-size:1.2rem; text-transform:none; font-weight: 400 !important;">
+                              Profile Section
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="#projects-section" type="button">Projects</a>
+                              <a class="dropdown-item" href="#publication-section" type="button">Publication</a>
+                              <a class="dropdown-item" href="#cp-section" type="button">Competitive Programming</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- PROJECTS -->
+            <div class="row px-1">
+                <div class="jumbotron col-9 pt-5">
+                    <div class="d-flex align-items-center" id="projects-section">
+                        <h2 class="h4 text-muted ml-3">Projects</h2>
+                    </div>
+                    <hr class="my-4">
+                            {% for project in alumni.projects_set.all %}
+                        <div class="d-flex align-items-center">
+                            <h4 class="h5 ml-3 text-primary">{{ project.name }}</h4>
+                            <a class="ml-auto mr-4" data-toggle="collapse" href="#project-desc12398719{{ project.pk }}fdfgdg" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="fas fa-angle-down fa-2x"></i>
+                            </a>
+                        </div>
+                            <!-- PROJECT DESCRIPTION -->
+                                <div class="collapse" id="project-desc12398719{{ project.pk }}fdfgdg">
+                                    <div class="d-flex align-items-center">
+                                        <div class="my-3 ml-3">
+                                            {{ project.description }}
+                                        </div>
+                                    </div>
+                                    <a href="{{ project.url }}" target="_blank" class="mt-4 ml-3">View Project<i class="fas fa-external-link-alt ml-1"></i></a>
+                                </div>
+                                <hr>
+                            <!-- PROJECT DESCRIPTION -->
+                        <!-- END PROJECT LOOP HERE! -->
+                    {% endfor %}
+                </div>
+            </div>
+
+                <!-- PUBLICATIONS -->
+                <div class="row px-1">
+                    <div class="jumbotron col-9 pt-5">
+                        <div class="d-flex align-items-center" id="publication-section">
+                            <h2 class="h4 text-muted ml-3">Publications</h2>
+                        </div>
+                        <hr class="my-4">
+                                <!-- PUBLICATION RUN LOOP HERE FOR DISPLAYING ALL PROJECTS-->
+                            <div class="d-flex align-items-center">
+                                <h4 class="h5 ml-3 text-primary">Alu-connect</h4>
+                                <a class="ml-auto mr-4" data-toggle="collapse" href="#publication-desc" aria-expanded="false" aria-controls="collapseExample">
+                                    <i class="fas fa-angle-down fa-2x"></i>
+                                </a>
+                            </div>
+                                <!-- PUBLICATION DESCRIPTION -->
+                                    <div class="collapse" id="publication-desc">
+                                        <div class="d-flex align-items-center">
+                                            <div class="my-3 ml-3">
+                                                This publication was written to help connection students with their Alumnis.
+                                            </div>
+                                        </div>
+                                        <a href="https://www.studybooster.co.in" target="_blank" class="mt-4 ml-3">View Project<i class="fas fa-external-link-alt ml-1"></i></a>
+                                    </div>
+                                    <hr>
+                                <!-- PROJECT DESCRIPTION -->
+                            <!-- END PROJECT LOOP HERE! -->
+                    </div>
+                </div>
+        </div>
+    </section>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/js/mdb.min.js"></script>
+    </body>
+    <style>
+        *{
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+        }
+        body{
+            background-color: #f7f7f7;
+        }
+        /* header{
+            min-height: 100vh;
+            background-image:  linear-gradient(rgba(0, 0, 0, 0.6),rgba(0,0,0,0.6)), url('imgs/bg.jpg');
+            background-repeat: none;
+            background-size: cover;
+        } */
+        .top-nav-collapse {
+            background-color: #084177;
+        }
+    </style>
+</html>
